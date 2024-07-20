@@ -1,0 +1,32 @@
+.chat-container {
+    background-image: url('../../assets/chatApp-bg.png');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .header {
+        background-color: white;
+        height: 60px;
+        position: fixed;
+        width: 100%;
+    }
+
+    .content-container {
+        height: calc(100% - 60px);
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        margin-top: 60px;
+        justify-content:space-evenly;
+
+        .chat-list-container, .chat-screen-container{
+           border-radius: 8px;
+           height: 100%;
+           background-color: white;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.ant-drawer-body{
+    font-family: 'Poppins-Medium';
+    font-size: 11px;
+    .ant-spin-nested-loading{
+        height: 100%;
+    }
+    .profile-pic{
+        width: 70px;
+        height: 70px;
+        border-radius: 50px;
+        padding: 10px;
+    }
+    .user-container{
+        border: 1px solid grey;
+        border-radius: 6px;
+        background-color: var(--grey-shade-6);
+        cursor: pointer;
+    }
+}
