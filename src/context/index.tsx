@@ -1,33 +1,18 @@
 import {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from "react";
-import { getLocalStorage } from "../shared/utils";
+import { getLocalStorage, NotificationProps, User, UserContextProps, UserContextProviderProps } from "../shared/utils";
 import { useNavigate } from "react-router-dom";
 
-interface User {
-  name: string;
-  email: string;
-  id: string;
-}
-
-interface UserContextProps {
-  user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>;
-}
 
 const UserContext = createContext<UserContextProps | null>(null);
 
-interface UserContextProviderProps {
-  children: ReactNode;
-}
-
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [notifications, setNotifications] = useState<NotificationProps[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,10 +31,16 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
   }, [navigate]);
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider
+      value={{ user, setUser, notifications, setNotifications }}
+    >
       {children}
     </UserContext.Provider>
   );
+};
+
+export const ChatState = () => {
+  return useContext(UserContext);
 };
 
 export { UserContextProvider, UserContext };

@@ -9,6 +9,9 @@ import {
   successNotification,
 } from "../../shared/helper/functions";
 import { User } from "../../shared/utils";
+import CardList from "../CardList";
+import { AlertOutlined } from "@ant-design/icons";
+import { ChatState } from "../../context";
 
 const { Search } = Input;
 
@@ -22,6 +25,7 @@ const Header = ({ setCurrentUser }: HeaderProps) => {
   const [usersList, setUsersList] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<InputRef>(null);
+  const { notifications } = ChatState();
 
   useEffect(() => {
     if (showSider && inputRef.current) {
@@ -50,7 +54,7 @@ const Header = ({ setCurrentUser }: HeaderProps) => {
   };
 
   return (
-    <>
+    <div className="row-top">
       <Search
         placeholder="Search Users"
         onKeyDown={() => setShowSider(true)}
@@ -78,26 +82,17 @@ const Header = ({ setCurrentUser }: HeaderProps) => {
             <Button onClick={handleGo}>Go</Button>
           </div>
           {usersList && (
-            <div className="d-flex gap-10 border f-column p-y-20">
-              {usersList.map((each: User) => {
-                return (
-                  <div
-                    onClick={() => handleUserClick(each)}
-                    className="d-flex gap-10 user-container"
-                  >
-                    <img src={each.pic} className="profile-pic" />
-                    <div className="d-flex f-column gap-0">
-                      <p>{each.name}</p>
-                      <p>Email : {each.email}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <CardList
+              inputList={usersList}
+              cardClickFunction={handleUserClick}
+            />
           )}
         </Spin>
       </Drawer>
-    </>
+      <div>
+        <AlertOutlined />
+      </div>
+    </div>
   );
 };
 

@@ -32,10 +32,7 @@ const Register = () => {
   const handleClick = async (): Promise<void> => {
     try {
       setLoading(true);
-      await registerUser(formData, {
-        isMultiPart: true,
-        fileList: ["imageUrl"],
-      }).then(() => {
+      await registerUser(formData).then(() => {
         navigate("/login");
         successNotification(REGISTRATION_SUCCESS);
         setLoading(false);
@@ -180,12 +177,6 @@ const Register = () => {
               name="image"
               valuePropName="fileList"
               getValueFromEvent={(e) => e?.fileList}
-              rules={[
-                {
-                  required: true,
-                  message: "Please upload a JPEG image!",
-                },
-              ]}
             >
               <Upload
                 name="image"

@@ -24,6 +24,14 @@
   --grey-shade-12: rgb(143 142 142);
   --grey-shade-13: #333;
   --grey-shade-14: #202020;
+  --green-shade-1: #d4edda;
+  --green-shade-2: #155724;
+  
+  --red-shade-3: #f9beb1;
+  --blue-shade-1: #005eb8;
+  --blue-shade-2: #0041f5;
+  --blue-shade-3: rgb(0 94 184 / 45%);
+  --blue-shade-4: #004b87;
 }
 
 @font-face {
